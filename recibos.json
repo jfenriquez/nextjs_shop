@@ -1,0 +1,116 @@
+{
+    "name": "Facturas Mensuales",
+    "nodes": [
+        {
+            "parameters": {
+                "triggerOn": "interval",
+                "interval": 15
+            },
+            "id": "cron-trigger",
+            "name": "Cron",
+            "type": "n8n-nodes-base.cron",
+            "typeVersion": 1,
+            "position": [
+                250,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "credentials": {
+                    "gmailOAuth2": {
+                        "id": "YOUR-CREDENTIAL-ID",
+                        "name": "Gmail OAuth2"
+                    }
+                },
+                "resource": "message",
+                "operation": "getAll",
+                "additionalFields": {
+                    "includeAttachments": true,
+                    "format": "full",
+                    "labelIds": [
+                        "INBOX"
+                    ],
+                    "q": "filename:pdf OR filename:zip"
+                }
+            },
+            "id": "gmail-node",
+            "name": "Leer Gmail",
+            "type": "n8n-nodes-base.gmail",
+            "typeVersion": 1,
+            "position": [
+                450,
+                300
+            ],
+            "credentials": {
+                "gmailOAuth2": {
+                    "id": "reemplaza-con-id",
+                    "name": "Gmail OAuth2"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "keepOnlySet": false,
+                "options": {}
+            },
+            "id": "binary-move",
+            "name": "Guardar Adjuntos",
+            "type": "n8n-nodes-base.moveBinaryData",
+            "typeVersion": 1,
+            "position": [
+                650,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "mode": "multiplex"
+            },
+            "id": "split-binary",
+            "name": "Separar Archivos",
+            "type": "n8n-nodes-base.splitInBatches",
+            "typeVersion": 1,
+            "position": [
+                850,
+                300
+            ]
+        }
+    ],
+    "connections": {
+        "Cron": {
+            "main": [
+                [
+                    {
+                        "node": "Leer Gmail",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Leer Gmail": {
+            "main": [
+                [
+                    {
+                        "node": "Guardar Adjuntos",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Guardar Adjuntos": {
+            "main": [
+                [
+                    {
+                        "node": "Separar Archivos",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "active": false
+}
