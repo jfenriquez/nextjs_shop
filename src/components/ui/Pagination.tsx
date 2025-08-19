@@ -32,7 +32,7 @@ const Pagination = ({ totalPages }: Props) => {
         {/* Previous */}
         <Link
           href={createPageUrl(currentPage - 1)}
-          className="join-item btn btn-sm btn-outline btn-circle"
+          className="join-item btn btn-md btn-circle btn-primary"
           aria-label="Página anterior"
         >
           ❮
@@ -44,11 +44,11 @@ const Pagination = ({ totalPages }: Props) => {
             key={index}
             href={createPageUrl(page)}
             aria-current={page === currentPage ? "page" : undefined}
-            className={`join-item btn btn-sm btn-circle ${
+            className={`join-item btn btn-md btn-circle ${
               +page === currentPage
                 ? "btn-primary text-primary-content"
                 : page === "..."
-                ? "btn-disabled"
+                ? "btn-disabled opacity-70"
                 : "btn-outline"
             }`}
           >
@@ -59,7 +59,7 @@ const Pagination = ({ totalPages }: Props) => {
         {/* Next */}
         <Link
           href={createPageUrl(currentPage + 1)}
-          className="join-item btn btn-sm btn-outline btn-circle"
+          className="join-item btn btn-md btn-circle btn-primary"
           aria-label="Página siguiente"
         >
           ❯

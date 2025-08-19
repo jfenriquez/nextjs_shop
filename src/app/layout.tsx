@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 
 import { Poller_One } from "next/font/google";
-import { TopMenu } from "@/components/ui/TopMenu";
 import Providers from "@/components/providers/Providers";
 import Head from "next/head"; //
 

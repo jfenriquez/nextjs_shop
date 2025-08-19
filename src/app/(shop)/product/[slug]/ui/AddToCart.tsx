@@ -50,8 +50,10 @@ const AddToCart = ({ product }: Props) => {
         }}
       />
 
-      {/*TODO:MEJORAR BOTON NO SE VE Button */}
-      <button className="btn-primary my-5" onClick={addToCar}>
+      <button
+        onClick={addToCar}
+        className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 my-5 cursor-pointer"
+      >
         Agregar al carrito
       </button>
     </>

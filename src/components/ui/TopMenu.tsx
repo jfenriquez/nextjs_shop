@@ -4,7 +4,7 @@ import { useCartStore } from "@/store/cart/cart/cartStore";
 import { useUIStore } from "@/store/ui-store";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { IoSearchOutline, IoCartOutline } from "react-icons/io5";
+import { IoCartOutline } from "react-icons/io5";
 import ThemeController from "./ThemeController";
 import { FiShoppingBag } from "react-icons/fi";
 import { FloatingDockDemo } from "./FloatingDockDemo";
@@ -13,7 +13,7 @@ export const TopMenu = () => {
   const openSideMenu = useUIStore((state) => state.openSideMenu);
   const totalItems = useCartStore((state) => state.getTotalItems());
   const [loaded, setLoaded] = useState(false);
-  /////TODO:MEJORAR TOP MENU
+
   useEffect(() => {
     setLoaded(true);
   }, []);
@@ -33,23 +33,9 @@ export const TopMenu = () => {
       {/* Center: Menu links (desktop only) */}
       <div className="hiden md:flex gap-2">
         <FloatingDockDemo></FloatingDockDemo>
-        {/* <Link href="/gender/men" className="btn btn-ghost btn-sm rounded-btn">
-          Hombres
-        </Link>
-        <Link href="/gender/women" className="btn btn-ghost btn-sm rounded-btn">
-          Mujeres
-        </Link>
-        <Link href="/gender/kid" className="btn btn-ghost btn-sm rounded-btn">
-          Niños
-        </Link> */}
       </div>
       {/* Right: Icons */}
       <div className="flex items-center gap-3">
-        {/* Search */}
-        <Link href="/search" className="btn btn-ghost btn-circle">
-          <IoSearchOutline className="w-5 h-5 text-base-content" />
-        </Link>
-
         {/* Cart */}
         <Link
           href={loaded && totalItems > 0 ? "/cart" : "/emptyCart"}
