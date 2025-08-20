@@ -46,7 +46,7 @@ const RegisterForm = () => {
       if (!loginRes.ok) {
         addToast({
           type: "error",
-          message: "Ocurrió un error de login",
+          message: loginRes.message || "Error al iniciar sesión",
         });
 
         return;

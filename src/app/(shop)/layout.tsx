@@ -6,7 +6,6 @@ import { Poller_One } from "next/font/google";
 import { TopMenu } from "@/components/ui/TopMenu";
 import SideBar from "@/components/ui/SideBar";
 import Footer from "@/components/ui/Footer";
-import { FloatingDockDemo } from "../floating/page";
 
 const roboto = Poller_One({
   subsets: ["latin"],

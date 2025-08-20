@@ -34,7 +34,7 @@ export const login = async (email: string, password: string) => {
       password,
       redirect: false,
     });
-    revalidatePath(`/perfil`);
+    revalidatePath(`/profile`);
     return { ok: true };
   } catch (error) {
     console.error("Login error:", error);
